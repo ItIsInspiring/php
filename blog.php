@@ -1,6 +1,6 @@
 <?php 
 
-$pgTitle = "page d'accueil";
+$pgTitle = "page de blog";
 
 require_once('inc/header.php');
 
