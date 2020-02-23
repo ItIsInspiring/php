@@ -4,8 +4,6 @@ $pgTitle = "Choix";
 
 require_once('inc/header.php');
 
-
-
 $parfums = [
     'Vanille' => 4,
     'Chocolat' => 5,
@@ -33,11 +31,14 @@ foreach(['parfum', 'supplement','cornet'] as $name){
 
             foreach($choix as $value){
                 if(isset($$liste[$value])){
+                    // j'enregistre le choix dans le tableau...
                     $ingredients[] = $value;
+                    // et son coût
                     $total += $$liste[$value];
                 }
             }
         } else {
+            //$$liste est un nom de variable dynamique
             if(isset($$liste[$value])){
                 $ingredients[] = $value;
                 $total += $$liste[$value];

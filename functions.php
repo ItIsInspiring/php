@@ -22,7 +22,12 @@ function nav_menu(String $linkCLass): string{
 
 function checkbox(string $name, string $value, array $data): string{
 
+    // variable qui va enregistrer les choix client après envoie du formulaire
+    // initialement vide
     $attributes = '';
+    
+    // si envoie du formulaire
+    // et si il y a des choix dans le tableau $data
     if(isset($data[$name]) && in_array($value, $data[$name])) {
         $attributes .= 'checked';
     }
@@ -36,5 +41,23 @@ function dump($variable){
     echo '<pre>';
     var_dump($variable);
     echo '</pre>';
+}
+
+function creneaux_html(array $creneaux){
+    // construire le tableau intermédiaire
+    // de X à Y H
+    // implode pour construire la phrase finale
+
+    if(isset($creneaux)){
+        if (count($creneaux) === 0){
+            return 'Fermé';
+        }
+        $phrases = [];
+        foreach ($creneaux as $creneau){
+            // $creneau renvoie à la ligne, l'index renvoie à la donnée 
+            $phrases[] = "<strong>{$creneau[0]}h</strong> - <strong>{$creneau[1]}h</strong>";
+        }
+        return implode(' et ', $phrases);
+    }
 
 }
