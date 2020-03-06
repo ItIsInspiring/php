@@ -1,9 +1,15 @@
-    <footer>
+    <hr>
+    <footer class="container">
       <div class="row">
 
 
         <div class="col-md-4">
-          
+          <?php 
+            require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' .DIRECTORY_SEPARATOR . 'compteur.php';
+            addView();
+            $nbVues = showViews(); 
+          ?>
+          <h3>Il y a <?= $nbVues; ?> vue<?php if($nbVues > 1) echo 's' ?></h3>
         </div>
 
         <div class="col-md-4">

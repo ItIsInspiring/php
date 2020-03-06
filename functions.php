@@ -17,7 +17,10 @@ function nav_menu(String $linkCLass): string{
        nav_item('/index.php', 'Accueil', $linkCLass) .
        nav_item('/contact.php', 'Contact', $linkCLass) .
        nav_item('/blog.php', 'Blog', $linkCLass).
-       nav_item('/form.php', 'Choix', $linkCLass);
+       nav_item('/menu.php', 'Menu', $linkCLass).
+       nav_item('/newsletter.php', 'Newsletter', $linkCLass).
+       nav_item('/form.php', 'Choix', $linkCLass).
+       nav_item('/dashboard.php', 'Dashboard', $linkCLass);
 }
 
 function checkbox(string $name, string $value, array $data): string{
@@ -43,13 +46,14 @@ function dump($variable){
     echo '</pre>';
 }
 
+// affiche la liste des horaires par jours
 function creneaux_html(array $creneaux){
     // construire le tableau intermédiaire
     // de X à Y H
     // implode pour construire la phrase finale
 
     if(isset($creneaux)){
-        if (count($creneaux) === 0){
+        if (empty($creneaux)){
             return 'Fermé';
         }
         $phrases = [];
@@ -61,3 +65,21 @@ function creneaux_html(array $creneaux){
     }
 
 }
+
+// comparer l'heure actuelle avec les horaires
+function in_creneaux (int $heure, array $creneaux) :bool{
+
+    foreach($creneaux as $creneau){
+        $debut = $creneau[0];
+        $fin = $creneau[1];
+        
+        // si l'heure actuelle est comprise entre
+        // l'ouverure et la fermetre
+        if ($heure >= $debut && $heure <= $fin){
+            return true;
+        }
+    }
+    return false;
+
+}
+
